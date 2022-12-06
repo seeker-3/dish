@@ -1,4 +1,4 @@
-const exec =
+export const exec =
   (cmd: string) =>
   async (scriptTemplate: TemplateStringsArray, ...args: string[]) => {
     const script = scriptTemplate.reduce(
@@ -33,3 +33,12 @@ export const sh = exec('sh')
 export const bash = exec('bash')
 export const zsh = exec('zsh')
 export const fish = exec('fish')
+export default exec
+
+const world = 'World'
+
+const stdout = await exec('python3.11')`
+print('Hello ${world}')
+`
+
+console.log(stdout) // Hello World
